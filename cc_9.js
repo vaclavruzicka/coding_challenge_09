@@ -86,6 +86,16 @@ class Company {
     calculatePayroll() {
         return this.employees.reduce((total, employee) => total + employee.calculateAnnualSalary(), 0)
     }
+
+    //Part of Task 5 - creating a function that can promote someone to manager.
+    promoteToManager(employee, teamSize) {
+        const index = this.employees.indexOf(employee) ///Seeing if the employee exists.
+        if (index !== -1) {
+            this.employees[index] = new Manager(employee.name, employee.id, employee.department, employee.salary, teamSize)
+        } //If the employee does exist, the function replaces the employee instance with an instance of a manager, but with the same details.
+        
+        
+    }
 }
 
 //Creating a new company called TechCorp using the constructor.
@@ -104,3 +114,11 @@ company.listEmployees()
 
 //Logging the calulate payroll function.
 console.log(company.calculatePayroll())
+
+//Task 5 - Implementing Promotions
+
+//Promoting the first employee to a manager and adding a team size of 3.
+company.promoteToManager(emp1, 3)
+
+//Logging the promotion.
+company.listEmployees()
