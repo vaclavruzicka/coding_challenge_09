@@ -62,3 +62,35 @@ console.log(mgr1.getDetails()) //Expected Output: "Manager: John Smith, ID: 201,
 
 //Console logging calulateBonus using the new manager we created.
 console.log(mgr1.calculateBonus()) //Expected Output: "Bonus: $9600"
+
+//Task 3 - Creating a Company Class
+
+//Creating a class constructor that names a company and includes an empty array for employees.
+class Company {
+    constructor (name) {
+        this.name = name //Storing name in the instance.
+        this.Employees = [] //Making the empty arrayfor employees.
+    }
+
+    //Creating a method that allows previously created employees to be added to the comapny's employee array.
+    addEmployee(employee) {
+        this.Employees.push(employee)
+    }
+
+    //Creating a method that lists the current employees in the array and returns their detials using the previously created getDetails.
+    listEmployees() {
+        return this.Employees.forEach(emp => console.log(emp.getDetails()))
+    }
+}
+
+//Creating a new company called TechCorp using the constructor.
+const company = new Company("TechCorp")
+
+//Adding the previously created employee using addEmployee.
+company.addEmployee(emp1)
+
+//Adding the previously created manager using addEmployee.
+company.addEmployee(mgr1)
+
+//Logging the newly inserted employee's detials using list employee.
+company.listEmployees()
