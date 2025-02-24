@@ -32,3 +32,33 @@ console.log(emp1.getDetails()); //Expected Output: "Employee: Alice Johnson, ID:
 
 //Console logging the calculateAnnualSalary function using the new employee we created.
 console.log(emp1.calculateAnnualSalary()) //Expected Output: "Salary: $60000"
+
+//Task 2 - Creating a Manager Class (Inheritance and Method Overriding)
+
+//Creating a class constructor using inheritance thatextends the previous class employee.
+class Manager extends Employee {
+    constructor(name, id, department, salary, teamSize) {
+        super(name, id, department, salary) //Recalls the detials from Employee.
+        this.teamSize = teamSize //Sotres teamSize in the instance.
+    }
+
+    //Overriding the previous getDetails function to allow for team size to be added to the details recalled for the Manager role.
+    getDetails() {
+        return `Manager: ${this.name}, ID: ${this.id}, Department: ${this.department}, Salary: $${this.salary}, Team Size: ${this.teamSize}.` //Uses a template literal to reutrn the details. 
+    }
+
+    //Writing a function that calulates a 10% bonus of a maanagers annual salary.
+    calculateBonus() {
+        let bonus = (this.salary *12) * 0.10 //Multiplying the managers annual salary by 0.1 to get 10% of their salary.
+        return `Bonus: $${bonus}`
+    }
+}
+
+//Creating a new maanager with the manager constructor.
+const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5)
+
+//Console logging getDetails using the new manager we created.
+console.log(mgr1.getDetails()) //Expected Output: "Manager: John Smith, ID: 201, Department: IT, Salary, :  $8000, Team Size: 5."
+
+//Console logging calulateBonus using the new manager we created.
+console.log(mgr1.calculateBonus()) //Expected Output: "Bonus: $9600"
