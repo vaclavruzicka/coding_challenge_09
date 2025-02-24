@@ -17,7 +17,7 @@ class Employee {
     //Writing a function that calculates an employee's yearly salary by taking the salary from their details.
     calculateAnnualSalary(){
         let annualSalary = this.salary * 12 //Multiplies the monthy salary by 12 to represent the entire year.
-        return `Annual Salary: $${annualSalary}` //Uses a template literal to return the total annual salary.
+        return annualSalary
     };
 
     
@@ -31,7 +31,7 @@ const emp1 = new Employee("Alice Johnson", 101, "Sales", 5000);
 console.log(emp1.getDetails()); //Expected Output: "Employee: Alice Johnson, ID: 101, Department: Sales, Salary: $5000."
 
 //Console logging the calculateAnnualSalary function using the new employee we created.
-console.log(emp1.calculateAnnualSalary()) //Expected Output: "Salary: $60000"
+console.log(emp1.calculateAnnualSalary()) //60000
 
 //Task 2 - Creating a Manager Class (Inheritance and Method Overriding)
 
@@ -50,7 +50,7 @@ class Manager extends Employee {
     //Writing a function that calulates a 10% bonus of a maanagers annual salary.
     calculateBonus() {
         let bonus = (this.salary *12) * 0.10 //Multiplying the managers annual salary by 0.1 to get 10% of their salary.
-        return `Bonus: $${bonus}`
+        return bonus
     }
 }
 
@@ -61,7 +61,7 @@ const mgr1 = new Manager("John Smith", 201, "IT", 8000, 5)
 console.log(mgr1.getDetails()) //Expected Output: "Manager: John Smith, ID: 201, Department: IT, Salary, :  $8000, Team Size: 5."
 
 //Console logging calulateBonus using the new manager we created.
-console.log(mgr1.calculateBonus()) //Expected Output: "Bonus: $9600"
+console.log(mgr1.calculateBonus()) //9600
 
 //Task 3 - Creating a Company Class
 
@@ -69,17 +69,22 @@ console.log(mgr1.calculateBonus()) //Expected Output: "Bonus: $9600"
 class Company {
     constructor (name) {
         this.name = name //Storing name in the instance.
-        this.Employees = [] //Making the empty arrayfor employees.
+        this.employees = [] //Making the empty arrayfor employees.
     }
 
     //Creating a method that allows previously created employees to be added to the comapny's employee array.
     addEmployee(employee) {
-        this.Employees.push(employee)
+        this.employees.push(employee)
     }
 
     //Creating a method that lists the current employees in the array and returns their detials using the previously created getDetails.
     listEmployees() {
-        return this.Employees.forEach(emp => console.log(emp.getDetails()))
+        return this.employees.forEach(emp => console.log(emp.getDetails()))
+    }
+    
+    //Part of Task 4 - creating a function that adds up the total payroll for all employees.
+    calculatePayroll() {
+        return this.employees.reduce((total, employee) => total + employee.calculateAnnualSalary(), 0)
     }
 }
 
@@ -94,3 +99,8 @@ company.addEmployee(mgr1)
 
 //Logging the newly inserted employee's detials using list employee.
 company.listEmployees()
+
+//Task 4 - Implementing a Payroll System
+
+//Logging the calulate payroll function.
+console.log(company.calculatePayroll())
